@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  vaultwarden:
+    container_name: vaultwarden
+    image: vaultwarden/server:latest
+    restart: unless-stopped
+    environment:
+      SMTP_HOST: '${SMTP_HOST}'
+      SMTP_FROM: '${SMTP_FROM}'
+      SMTP_FROM_NAME: '${SMTP_FROM_NAME}'
+      SMTP_PORT: '${SMTP_PORT}'
+      SMTP_SECURITY: '${SMTP_SECURITY}'
+      SMTP_USERNAME: '${SMTP_USERNAME}'
+      SMTP_PASSWORD: '${SMTP_PASSWORD}'
+      SIGNUPS_ALLOWED: '${SIGNUPS_ALLOWED}'
+      SENDS_ALLOWED: '${SENDS_ALLOWED}'
+      EMERGENCY_ACCESS_ALLOWED: '${EMERGENCY_ACCESS_ALLOWED}'
+      ADMIN_TOKEN: '${ADMIN_TOKEN}'
+      DISABLE_ADMIN_TOKEN: '${DISABLE_ADMIN_TOKEN}'
+      INVITATIONS_ALLOWED: '${INVITATIONS_ALLOWED}'
+      SHOW_PASSWORD_HINT: '${SHOW_PASSWORD_HINT}'
+      SIGNUPS_VERIFY: '${SIGNUPS_VERIFY}'
+      DOMAIN: '${DOMAIN}'
+
+    volumes:
+      - data:/data/
+    ports:
+      - 8448:80
+volumes:
+  data:
